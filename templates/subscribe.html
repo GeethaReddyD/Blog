@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Subscribe Page</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% endblock%}
+{% block body %}
+<form action="" method="post">
+    <div class="container login-page mt-5">
+        <div class="row">
+            <div class="col  d-flex flex-column justify-content-center m-auto">
+                <h1 class="heading">Subscriber Form</h1>
+                <label>UserName:</label>
+                <input type="text" name="username" required/> <br/>
+                <label>Email</label>
+                <input type="email" name="Email" required/> <br/>
+                <p class="message">{{message}}</p>
+                <p><input type="submit" class="btn btn-success" value="submit"/></p>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock%}

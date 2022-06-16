@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+{% block head %}
+<title>Subscribe Page</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% endblock%}
+{% block body %}
+
+    <div class="image d-flex flex-column justify-content-center">
+        <h1>Top Amazing Cities to Travel</h1>
+        <p class="blog-sub">Your Adventure Begins Now!</p>
+        
+    </div>
+    <div class="submit-btn mt-5 mb-5">
+        <a href="/blog" class="submit-btn"><button class="btn btn-primary mr-3">Create Post</button></a>
+        <a href="/subscribe"><button class="btn btn-danger">Subscribe</button></a>
+    </div>
+    <h1 class="ml-5 text-center heading">Blog Posts</h1>
+    <div>
+        {% for item in all_posts %}
+                <div class="container mb-3">
+                    <div class="row">
+                        <div class="col-md-6  m-auto ">
+                            <div class="post-card">
+                                <h1 class="blog-name">{{item[1]}}</h1>
+                                <p class="content">{{item[2]}}</p>
+                            </div>
+    
+                            <h1 class="comment">Comments</h1>
+                            <div class="card-body">
+                                {% for comment in all_comments %}
+                                    {% if item[0] == comment[3] %}
+                                        <div class="comment-section">
+                                            <span><a href="">{{comment[4]}} </a>: {{comment[1]}}</span>
+                                        
+                                            <div><a href="home/{{comment[0]}}">delete</a></div>
+                                        </div>
+                                
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                            <form action="/comment/{{item[0]}}" method="POST">
+                                <input type="text" placeholder="Add the comment" name="comment" class="comment-box"/>
+                                <button class="btn btn-primary">Comment</button>
+                                <a href="/delete/{{item[0]}}"><button class="btn btn-danger">Delete</button></a>
+                            </form>
+                            
+                            
+                        </div>
+                            
+
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+        
+            
+    
+    
+    

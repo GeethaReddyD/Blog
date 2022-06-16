@@ -1,0 +1,69 @@
+.image{
+    width: 100vw;
+    height: 350px;
+    font-size: 18px;
+    color: white;
+    background-image: url('https://youmatter.world/app/uploads/sites/2/2019/11/travel-world.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 20px;
+    font-family: "Breif serif";
+}
+
+.submit-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.comment-box{
+    width: 250px;
+}
+.comment{
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Times New Roman';
+}
+.post-card{
+    border: 1px solid ;
+    border-radius : 5px;
+    font-family: "Roboto";
+    padding: 5px;
+    width: 530px;
+}
+
+.blog-name{
+    font-size: 25px;
+    font-weight: 500px;
+    font-family:"Calibri";
+}
+.content{
+    font-size: 16px;
+}
+.comment-section{
+    display: flex;
+    justify-content: space-between;
+}
+.login-page{
+    width: 400px;
+    height: 450px;
+    border: 1px solid black;
+    border-radius:10px;
+    padding: 20px;
+    
+}
+.heading{
+    font-size: 25px;
+    font-family:"sans-serif";
+}
+.input-box{
+    width: 75%;
+}
+.text-box{
+    width: 75%;
+}
+.blog-submit{
+    width: 150px;
+}
+
