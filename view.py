@@ -30,10 +30,8 @@ c.execute('CREATE TABLE IF NOT EXISTS Comments(id INTEGER PRIMARY KEY AUTOINCREM
 c.execute('CREATE TABLE IF NOT EXISTS Subscribers(id INTEGER PRIMARY KEY AUTOINCREMENT,username VARCHAR(50),password VARCHAR(80), Email VARCHAR(80))')
 
 
-def get_connection():
-    con = sqlite3.connect("database.db",check_same_thread=False)   
-    c = con.cursor()
-    return c
+con = sqlite3.connect("database.db",check_same_thread=False)   
+c = con.cursor()
 
 
 user=[]
@@ -47,18 +45,12 @@ def login():
             email=request.form.get('email')
             name = request.form.get("username")
             password = request.form.get("password")
-
-            con = sqlite3.connect("database.db",check_same_thread=False)   
-            c = con.cursor()
             
             c.execute('SELECT * FROM Users WHERE username=?',(name,)) 
             result = c.fetchone()
 
 
             if not result:
-                
-                con = sqlite3.connect("database.db",check_same_thread=False)   
-                c = con.cursor()
                 
                 c.execute('INSERT into Users (username,password,Email) values (?,?,?)',(name,password,email) )
                 con.commit()
@@ -83,13 +75,12 @@ def login():
 
 def home():
     try:
-        connect = get_connection()
     # to get all posts 
-        connect.execute("select * from Posts")  
-        all_posts = connect.fetchall()
+        c.execute("select * from Posts")  
+        all_posts = c.fetchall()
     #to get all comments of posts
-        connect.execute('select * from Comments')
-        all_comments = connect.fetchall()
+        c.execute('select * from Comments')
+        all_comments = c.fetchall()
 
         return render_template("home.html",all_posts = all_posts,all_comments = all_comments)
     except:
@@ -105,10 +96,9 @@ def blog_post():
         if len(user) == 0:
             return redirect(url_for('login'))
         else:
-            connect = get_connection()
             id = user[0][0]
-            connect.execute('SELECT username,password FROM Users WHERE id=?',(id,))
-            result = connect.fetchone()
+            c.execute('SELECT username,password FROM Users WHERE id=?',(id,))
+            result = c.fetchone()
             if result[0] == "admin" and result[1] == "admin@123":
 
                 if request.method == "POST":
@@ -145,8 +135,6 @@ def blog_post():
 
 def delete_blog(id):
     try:
-        con = sqlite3.connect("database.db",check_same_thread=False)   
-        c = con.cursor()
         c.execute("DELETE FROM Comments WHERE id=?",(id,))
         con.commit()
         return redirect(url_for('home'))
@@ -157,8 +145,6 @@ def delete_blog(id):
 
 def post_blog(id):
     try:
-        con = sqlite3.connect("database.db",check_same_thread=False)   
-        c = con.cursor()
         c.execute("DELETE FROM Posts WHERE id=?",(id,))
         con.commit()
         return redirect(url_for('home'))
@@ -173,10 +159,7 @@ def comments(id):
     try:
         if len(user) == 0:
             return redirect(url_for('login'))
-        else:
-
-            con = sqlite3.connect("database.db",check_same_thread=False)   
-            c = con.cursor() 
+        else: 
             user_id = user[0][0]
             c.execute('SELECT * FROM Users WHERE id=?',(user_id,))
             result = c.fetchone()
@@ -205,8 +188,6 @@ def subscribers():
             if not name  or not email:
                 return render_template("subscribe.html",message = "Enter all the fields")
 
-            con = sqlite3.connect("database.db",check_same_thread=False)   
-            c = con.cursor() 
             
             c.execute('INSERT INTO Subscribers (username,Email) VALUES(?,?)',(name,email))
 

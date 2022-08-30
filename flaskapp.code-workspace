@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "..\\django\\todoauth"
+		},
+		{
+			"path": "..\\django\\resumebuilder"
+		},
+		{
+			"path": "..\\django\\ASSIGNPROJECT"
+		},
+		{
+			"path": "..\\django\\WEBSCRAPPER"
+		},
+		{
+			"path": "..\\django\\GOOGLESCRAPPER"
+		},
+		{
+			"path": "..\\django\\COOKIEPROJECT"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
